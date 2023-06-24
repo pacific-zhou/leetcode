@@ -1,6 +1,15 @@
 from typing import List
 
 
+def leetcode26(self, nums: List[int]) -> int:
+    slow, fast = 0, 1
+    while fast < len(nums):
+        if nums[fast] != nums[slow]:
+            slow += 1
+            nums[slow] = nums[fast]
+        fast += 1
+    return slow + 1
+
 def leetcode27(nums: List[int], val: int) -> int:
     index = 0
     size = 0
@@ -10,7 +19,6 @@ def leetcode27(nums: List[int], val: int) -> int:
             index = index + 1
             size = size + 1
     return size
-
 
 def leetcode88(nums1: List[int], m: int, nums2: List[int], n: int) -> None:
     """
