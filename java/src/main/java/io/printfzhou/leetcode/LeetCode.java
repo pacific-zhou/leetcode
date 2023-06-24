@@ -5,6 +5,17 @@ package io.printfzhou.leetcode;
  */
 public class LeetCode {
 
+    public int leetcode26(int[] nums) {
+        int slow = 0, fast = 1;
+        while (fast < nums.length) {
+            if (nums[fast] != nums[slow]) {
+                nums[++slow] = nums[fast];
+            }
+            fast++;
+        }
+        return ++slow;
+    }
+
     public int leetcode27(int[] nums, int val) {
         int index = 0, size = 0;
         for (int i = 0; i < nums.length; i++) {
