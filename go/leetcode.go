@@ -2,6 +2,18 @@ package main
 
 import "fmt"
 
+func leetcode26(nums []int) int {
+	slow, fast := 0, 1
+	for fast < len(nums) {
+		if nums[slow] != nums[fast] {
+			slow++
+			nums[slow] = nums[fast]
+		}
+		fast++
+	}
+	return slow + 1
+}
+
 func leetcode27(nums []int, val int) int {
 	var index, resultSzie int
 	for _, i := range nums {
