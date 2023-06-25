@@ -26,6 +26,20 @@ int leetcode27(vector<int> &nums, int val) {
     return size;
 }
 
+int leetcode80(vector<int> &nums) {
+    if (nums.size() < 2) {
+        return nums.size();
+    }
+    int slow = 2, fast = 2;
+    while (fast < nums.size()) {
+        if (nums[fast] != nums[slow - 2]) {
+            nums[slow++] = nums[fast];
+        }
+        fast++;
+    }
+    return slow;
+}
+
 void leetcode88(vector<int> &nums1, int m, vector<int> &nums2, int n) {
     int s = m + n - 1;
     while (m > 0 && n > 0) {
