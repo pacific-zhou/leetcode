@@ -55,6 +55,21 @@ public class LeetCode {
         }
     }
 
+    public int leetcode169(int[] nums) {
+        int count = 0, result = 0;
+        for (int i : nums) {
+            if (count == 0) {
+                result = i;
+            }
+            if (i == result) {
+                count++;
+            } else {
+                count--;
+            }
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
 
     }

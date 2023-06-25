@@ -10,6 +10,7 @@ def leetcode26(self, nums: List[int]) -> int:
         fast += 1
     return slow + 1
 
+
 def leetcode27(nums: List[int], val: int) -> int:
     index = 0
     size = 0
@@ -19,6 +20,7 @@ def leetcode27(nums: List[int], val: int) -> int:
             index = index + 1
             size = size + 1
     return size
+
 
 def leetcode80(self, nums: List[int]) -> int:
     if len(nums) <= 2:
@@ -30,6 +32,7 @@ def leetcode80(self, nums: List[int]) -> int:
             slow += 1
         fast += 1
     return slow
+
 
 def leetcode88(nums1: List[int], m: int, nums2: List[int], n: int) -> None:
     """
@@ -49,6 +52,18 @@ def leetcode88(nums1: List[int], m: int, nums2: List[int], n: int) -> None:
         nums1[s] = nums2[n - 1]
         s -= 1
         n -= 1
+
+
+def leetcode169(self, nums: List[int]) -> int:
+    count, result = 0, 0
+    for v in nums:
+        if count == 0:
+            result = v
+        if v == result:
+            count += 1
+        else:
+            count -= 1
+    return result
 
 
 if __name__ == '__main__':

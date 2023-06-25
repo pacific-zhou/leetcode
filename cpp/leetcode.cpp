@@ -55,6 +55,22 @@ void leetcode88(vector<int> &nums1, int m, vector<int> &nums2, int n) {
     }
 }
 
+// 摩尔投票法
+int leetcode169(vector<int> &nums) {
+    int count = 0, tmp = 0;
+    for (int i = 0; i < nums.size(); ++i) {
+        if (count == 0) {
+            tmp = nums[i];
+        }
+        if (tmp == nums[i]) {
+            count++;
+        } else {
+            count--;
+        }
+    }
+    return tmp;
+}
+
 
 int main() {
     cout << "Hello, World!" << endl;

@@ -61,6 +61,21 @@ func leetcode88(nums1 []int, m int, nums2 []int, n int) {
 	}
 }
 
+func leetcode169(nums []int) int {
+	count, result := 0, 0
+	for _, v := range nums {
+		if count == 0 {
+			result = v
+		}
+		if v == result {
+			count++
+		} else {
+			count--
+		}
+	}
+	return result
+}
+
 func main() {
 	fmt.Println("hello world")
 }
