@@ -20,6 +20,17 @@ def leetcode27(nums: List[int], val: int) -> int:
             size = size + 1
     return size
 
+def leetcode80(self, nums: List[int]) -> int:
+    if len(nums) <= 2:
+        return len(nums)
+    slow, fast = 2, 2
+    while fast < len(nums):
+        if nums[fast] != nums[slow - 2]:
+            nums[slow] = nums[fast]
+            slow += 1
+        fast += 1
+    return slow
+
 def leetcode88(nums1: List[int], m: int, nums2: List[int], n: int) -> None:
     """
     Do not return anything, modify nums1 in-place instead.
