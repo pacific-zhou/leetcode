@@ -26,6 +26,22 @@ func leetcode27(nums []int, val int) int {
 	return resultSzie
 }
 
+func leetcode80(nums []int) int {
+	if len(nums) <= 2 {
+		return len(nums)
+	}
+
+	slow, fast := 2, 2
+	for fast < len(nums) {
+		if nums[fast] != nums[slow-2] {
+			nums[slow] = nums[fast]
+			slow++
+		}
+		fast++
+	}
+	return slow
+}
+
 func leetcode88(nums1 []int, m int, nums2 []int, n int) {
 	s := m + n - 1
 	for m > 0 && n > 0 {
