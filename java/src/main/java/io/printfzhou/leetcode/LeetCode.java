@@ -27,6 +27,20 @@ public class LeetCode {
         return size;
     }
 
+    public int leetcode80(int[] nums) {
+        if (nums.length <= 2) {
+            return nums.length;
+        }
+        int slow = 2, fast = 2;
+        while (fast < nums.length) {
+            if (nums[fast] != nums[slow - 2]) {
+                nums[slow++] = nums[fast];
+            }
+            fast++;
+        }
+        return slow;
+    }
+
     public void leetcode88(int[] num1, int m, int[] num2, int n) {
         int s = m + n - 1;
         while (m > 0 && n > 0) {
