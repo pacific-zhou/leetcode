@@ -71,6 +71,24 @@ int leetcode169(vector<int> &nums) {
     return tmp;
 }
 
+void reverse_array(vector<int> &nums, int start, int end) {
+    for (int i = 0; i <= (end - start) / 2; ++i) {
+        int tmp = nums[start + i];
+        nums[start + i] = nums[end - i];
+        nums[end - i] = tmp;
+    }
+}
+
+void leetcode189(vector<int> &nums, int k) {
+    k %= nums.size();
+    if (nums.size() == 1 or k == 0) {
+        return;
+    }
+    reverse_array(nums, 0, nums.size() - 1);
+    reverse_array(nums, 0, k - 1);
+    reverse_array(nums, k, nums.size() - 1);
+}
+
 
 int main() {
     cout << "Hello, World!" << endl;
@@ -84,6 +102,13 @@ int main() {
     vector<int> b = {1};
     leetcode88(a, 0, b, 1);
     cout << a.size() << endl;
+
+    cout << ">>>>>>>189" << endl;
+    vector<int> v189 = {7, 6, 5, 4, 3, 2, 1};
+    reverse_array(v189, 3, 6);
+    for (const auto &item: v189) {
+        cout << item << endl;
+    }
 
     return 0;
 }

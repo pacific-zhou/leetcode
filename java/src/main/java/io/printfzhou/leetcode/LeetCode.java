@@ -70,6 +70,26 @@ public class LeetCode {
         return result;
     }
 
+    public void leetcode189(int[] nums, int k) {
+        k %= nums.length;
+        if (nums.length == 1 || k == 0) {
+            return;
+        }
+        reverseArray(nums, 0, nums.length - 1);
+        reverseArray(nums, 0, k - 1);
+        reverseArray(nums, k, nums.length - 1);
+    }
+
+    private void reverseArray(int[] nums, int i, int j) {
+        while (i < j) {
+            int tmp = nums[i];
+            nums[i] = nums[j];
+            nums[j] = tmp;
+            i++;
+            j--;
+        }
+    }
+
     public static void main(String[] args) {
 
     }

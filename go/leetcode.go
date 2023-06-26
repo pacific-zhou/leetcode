@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func leetcode26(nums []int) int {
 	slow, fast := 0, 1
@@ -74,6 +76,24 @@ func leetcode169(nums []int) int {
 		}
 	}
 	return result
+}
+
+func leetcode189(nums []int, k int) {
+	k %= len(nums)
+	if k == 0 || len(nums) == 1 {
+		return
+	}
+	reverseArray(nums, 0, len(nums)-1)
+	reverseArray(nums, 0, k-1)
+	reverseArray(nums, k, len(nums)-1)
+}
+
+func reverseArray(nums []int, i int, j int) {
+	for i < j {
+		nums[i], nums[j] = nums[j], nums[i]
+		i++
+		j--
+	}
 }
 
 func main() {
