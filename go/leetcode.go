@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 )
 
 func leetcode26(nums []int) int {
@@ -61,6 +62,18 @@ func leetcode88(nums1 []int, m int, nums2 []int, n int) {
 		nums1[s] = nums2[i-1]
 		s--
 	}
+}
+
+func leetcode121(prices []int) int {
+	minPrice, maxProfit := math.MaxInt, 0
+	for _, price := range prices {
+		if price < minPrice {
+			minPrice = price
+		} else if price-minPrice > maxProfit {
+			maxProfit = price - minPrice
+		}
+	}
+	return maxProfit
 }
 
 func leetcode169(nums []int) int {

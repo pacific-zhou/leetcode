@@ -55,6 +55,20 @@ void leetcode88(vector<int> &nums1, int m, vector<int> &nums2, int n) {
     }
 }
 
+int leetcode121(vector<int>& prices) {
+    int min_price = INT32_MAX, max_profit = 0;
+    for (int i = 0; i < prices.size(); ++i) {
+        if (prices[i] < min_price) {
+            min_price = prices[i];
+            continue;
+        }
+        if (prices[i] - min_price > max_profit) {
+            max_profit = prices[i] - min_price;
+        }
+    }
+    return max_profit;
+}
+
 // 摩尔投票法
 int leetcode169(vector<int> &nums) {
     int count = 0, tmp = 0;

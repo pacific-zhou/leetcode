@@ -54,6 +54,16 @@ def leetcode88(nums1: List[int], m: int, nums2: List[int], n: int) -> None:
         n -= 1
 
 
+def leetcode121(self, prices: List[int]) -> int:
+    minPrice, maxProfit = prices[0], 0
+    for price in prices:
+        if price < minPrice:
+            minPrice = price
+        elif price - minPrice > maxProfit:
+            maxProfit = price - minPrice
+    return maxProfit
+
+
 def leetcode169(self, nums: List[int]) -> int:
     count, result = 0, 0
     for v in nums:
