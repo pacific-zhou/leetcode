@@ -104,6 +104,7 @@ void leetcode189(vector<int> &nums, int k) {
 }
 
 
+// main entry point
 int main() {
     cout << "Hello, World!" << endl;
 
