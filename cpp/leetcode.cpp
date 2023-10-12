@@ -93,7 +93,7 @@ void reverse_array(vector<int> &nums, int start, int end) {
     }
 }
 
-void leetcode189(vector<int> &nums, int k) {
+void leetcode_189(vector<int> &nums, int k) {
     k %= nums.size();
     if (nums.size() == 1 or k == 0) {
         return;
