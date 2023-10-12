@@ -70,7 +70,7 @@ int leetcode121(vector<int>& prices) {
 }
 
 // 摩尔投票法
-int leetcode169(vector<int> &nums) {
+int leetcode_169(vector<int> &nums) {
     int count = 0, tmp = 0;
     for (int i = 0; i < nums.size(); ++i) {
         if (count == 0) {
