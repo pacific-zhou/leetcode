@@ -125,5 +125,7 @@ int main() {
         cout << item << endl;
     }
 
+
+    cout << "finished" << endl;
     return 0;
 }
