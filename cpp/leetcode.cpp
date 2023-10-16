@@ -5,6 +5,83 @@
 
 using namespace std;
 
+/**
+I             1
+V             5
+X             10
+L             50
+C             100
+D             500
+M             1000
+I 可以放在 V (5) 和 X (10) 的左边，来表示 4 和 9。
+X 可以放在 L (50) 和 C (100) 的左边，来表示 40 和 90。
+C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。
+
+ DCXXI
+ */
+int leetcode_13(string s) {
+  int result = 0;
+  for (int i = 0; i < s.size(); ++i) {
+    if (s[i] == 'I' and (i + 1) <= s.size() - 1 and s[i + 1] == 'V') {
+      result += 4;
+      ++i;
+      continue;
+    }
+    if (s[i] == 'I' and (i + 1) <= s.size() - 1 and s[i + 1] == 'X') {
+      result += 9;
+      ++i;
+      continue;
+    }
+    if (s[i] == 'I') {
+      result += 1;
+      continue;
+    }
+    if (s[i] == 'V') {
+      result += 5;
+    }
+    if (s[i] == 'X' and (i + 1) <= s.size() - 1 and s[i + 1] == 'L') {
+      result += 40;
+      ++i;
+      continue;
+    }
+    if (s[i] == 'X' and (i + 1) <= s.size() - 1 and s[i + 1] == 'C') {
+      result += 90;
+      ++i;
+      continue;
+    }
+    if (s[i] == 'X') {
+      result += 10;
+      continue;
+    }
+    if (s[i] == 'L') {
+      result += 50;
+      continue;
+    }
+    if (s[i] == 'C' and (i + 1) <= s.size() - 1 and s[i + 1] == 'D') {
+      result += 400;
+      ++i;
+      continue;
+    }
+    if (s[i] == 'C' and (i + 1) <= s.size() - 1 and s[i + 1] == 'M') {
+      result += 900;
+      ++i;
+      continue;
+    }
+    if (s[i] == 'C') {
+      result += 100;
+    }
+    if (s[i] == 'D') {
+      result += 500;
+      continue;
+    }
+    if (s[i] == 'M') {
+      result += 1000;
+      continue;
+    }
+  }
+  return result;
+}
+
 int leetcode_27(vector<int> &nums, int val) {
   int i = 0;
   for (const int j: nums) {
