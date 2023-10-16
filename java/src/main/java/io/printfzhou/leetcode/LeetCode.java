@@ -1,110 +1,42 @@
 package io.printfzhou.leetcode;
 
+import java.util.Arrays;
+import java.util.stream.IntStream;
+
 /**
  * @author prinfzhou
  */
 public class LeetCode {
 
-    public int leetcode26(int[] nums) {
-        int slow = 0, fast = 1;
-        while (fast < nums.length) {
-            if (nums[fast] != nums[slow]) {
-                nums[++slow] = nums[fast];
-            }
-            fast++;
-        }
-        return ++slow;
-    }
-
-    public int leetcode27(int[] nums, int val) {
-        int index = 0, size = 0;
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] != val) {
-                nums[index++] = nums[i];
-                size++;
-            }
-        }
-        return size;
-    }
-
-    public int leetcode80(int[] nums) {
-        if (nums.length <= 2) {
-            return nums.length;
-        }
-        int slow = 2, fast = 2;
-        while (fast < nums.length) {
-            if (nums[fast] != nums[slow - 2]) {
-                nums[slow++] = nums[fast];
-            }
-            fast++;
-        }
-        return slow;
-    }
-
-    public void leetcode88(int[] num1, int m, int[] num2, int n) {
-        int s = m + n - 1;
+    public void leetcode_88_1(int[] nums1, int m, int[] nums2, int n) {
+        int i = m + n;
         while (m > 0 && n > 0) {
-            if (num1[m - 1] >= num2[n - 1]) {
-                num1[s--] = num1[m-- - 1];
+            if (nums1[m - 1] > nums2[n - 1]) {
+                nums1[--i] = nums1[--m];
             } else {
-                num1[s--] = num2[n-- - 1];
+                nums1[--i] = nums2[--n];
             }
         }
-        for (int i = n; i > 0; --i) {
-            num1[s--] = num2[i - 1];
+        while (n > 0) {
+            nums1[--i] = nums2[--n];
         }
     }
 
-    public int leetcode169(int[] nums) {
-        int count = 0, result = 0;
-        for (int i : nums) {
-            if (count == 0) {
-                result = i;
-            }
-            if (i == result) {
-                count++;
-            } else {
-                count--;
-            }
+    public void leetcode_88_2(int[] nums1, int m, int[] nums2, int n) {
+        if (n >= 0) {
+            System.arraycopy(nums2, 0, nums1, m, n);
         }
-        return result;
-    }
-
-    public void leetcode189(int[] nums, int k) {
-        k %= nums.length;
-        if (nums.length == 1 || k == 0) {
-            return;
-        }
-        reverseArray(nums, 0, nums.length - 1);
-        reverseArray(nums, 0, k - 1);
-        reverseArray(nums, k, nums.length - 1);
-    }
-
-    private void reverseArray(int[] nums, int i, int j) {
-        while (i < j) {
-            int tmp = nums[i];
-            nums[i] = nums[j];
-            nums[j] = tmp;
-            i++;
-            j--;
-        }
-    }
-
-    public int leetcode121(int[] prices) {
-        int minPrice = Integer.MAX_VALUE, maxProfit = 0;
-        for (int price : prices) {
-            if (price < minPrice) {
-                minPrice = price;
-                continue;
-            }
-            if (price - minPrice > maxProfit) {
-                maxProfit = price - minPrice;
-            }
-        }
-        return maxProfit;
+        Arrays.sort(nums1);
     }
 
     public static void main(String[] args) {
+        int[] nums1 = {1, 2, 3, 0, 0, 0};
+        int[] nums2 = {2, 5, 6};
+        LeetCode leetcode = new LeetCode();
+//        leetcode.leetcode_88_1(nums1, 3, nums2, 3);
+//        System.out.println(Arrays.toString(nums1));
+        leetcode.leetcode_88_2(nums1, 3, nums2, 3);
+        System.out.println(Arrays.toString(nums1));
 
     }
 }
