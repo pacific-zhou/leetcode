@@ -7,9 +7,9 @@ using namespace std;
 
 int leetcode_27(vector<int> &nums, int val) {
   int i = 0;
-  for (int k = 0; k < nums.size(); ++k) {
-    if (nums[k] != val) {
-      nums[i++] = nums[k];
+  for (const int j: nums) {
+    if (j != val) {
+      nums[i++] = j;
     }
   }
   return i;
