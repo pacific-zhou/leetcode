@@ -15,6 +15,21 @@ int leetcode_27(vector<int> &nums, int val) {
   return i;
 }
 
+int leetcode_58(string s) {
+  bool b = false;
+  int c = 0;
+  for (int j = s.size() - 1; j >= 0; --j) {
+    if (s[j] != ' ') {
+      c++;
+      b = true;
+    }
+    if (s[j] == ' ' and b) {
+      break;
+    }
+  }
+  return c;
+}
+
 void leetcode_88_1(vector<int> &nums1, int m, vector<int> &nums2, int n) {
   int i = m + n;
   while (m > 0 and n > 0) {
@@ -39,6 +54,12 @@ void leetcode_88_2(vector<int> &nums1, int m, vector<int> &nums2, int n) {
 // main entry point
 int main() {
   cout << "Hello, World!" << endl;
+
+  // 58
+  std::string str = "luffy is still joyboy";
+  int c = leetcode_58(str);
+  cout << "count:" << c << endl;
+
 
   cout << "finished" << endl;
   return 0;
