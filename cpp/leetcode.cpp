@@ -5,6 +5,16 @@
 
 using namespace std;
 
+int leetcode_27(vector<int> &nums, int val) {
+  int i = 0;
+  for (int k = 0; k < nums.size(); ++k) {
+    if (nums[k] != val) {
+      nums[i++] = nums[k];
+    }
+  }
+  return i;
+}
+
 void leetcode_88_1(vector<int> &nums1, int m, vector<int> &nums2, int n) {
   int i = m + n;
   while (m > 0 and n > 0) {
