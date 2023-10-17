@@ -6,6 +6,69 @@
 
 using namespace std;
 
+string leetcode_12_1(int num) {
+  std::vector<int> l = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+  std::map<int, string> m = {{1,    "I"},
+                             {4,    "IV"},
+                             {5,    "V"},
+                             {9,    "IX"},
+                             {10,   "X"},
+                             {40,   "XL"},
+                             {50,   "L"},
+                             {90,   "XC"},
+                             {100,  "C"},
+                             {400,  "CD"},
+                             {500,  "D"},
+                             {900,  "CM"},
+                             {1000, "M"}};
+  string result;
+  int mod = 0, div = 0;
+  while (true) {
+    for (int i: l) {
+      mod = num / i;
+      div = num % i;
+      if (mod >= 1) {
+        for (int j = 0; j < mod; ++j) {
+          result.append(m[i]);
+        }
+      }
+      num = div;
+    }
+    if (div == 0) {
+      break;
+    }
+  }
+  return result;
+}
+
+string leetcode_12_2(int num) {
+  const pair<int, string> valueSymbols[] = {
+          {1000, "M"},
+          {900,  "CM"},
+          {500,  "D"},
+          {400,  "CD"},
+          {100,  "C"},
+          {90,   "XC"},
+          {50,   "L"},
+          {40,   "XL"},
+          {10,   "X"},
+          {9,    "IX"},
+          {5,    "V"},
+          {4,    "IV"},
+          {1,    "I"}};
+  string result;
+  for (const auto &[k, v]: m) {
+    while (num >= k) {
+      num -= k;
+      result += v;
+    }
+    if (num == 0) {
+      break;
+    }
+  }
+  return result;
+}
+
 /**
 I             1
 V             5
