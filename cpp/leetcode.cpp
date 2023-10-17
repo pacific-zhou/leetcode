@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <map>
 
 using namespace std;
 
@@ -19,7 +20,7 @@ C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。
 
  DCXXI
  */
-int leetcode_13(string s) {
+int leetcode_13_1(string s) {
   int result = 0;
   for (int i = 0; i < s.size(); ++i) {
     if (s[i] == 'I' and (i + 1) <= s.size() - 1 and s[i + 1] == 'V') {
@@ -80,6 +81,71 @@ int leetcode_13(string s) {
     }
   }
   return result;
+}
+
+/**
+I             1
+V             5
+X             10
+L             50
+C             100
+D             500
+M             1000
+I 可以放在 V (5) 和 X (10) 的左边，来表示 4 和 9。
+X 可以放在 L (50) 和 C (100) 的左边，来表示 40 和 90。
+C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。
+
+ DCXXI
+ */
+int leetcode_13_2(string s) {
+  std::map<char, int> m = {{'I', 1},
+                           {'V', 5},
+                           {'X', 10},
+                           {'L', 50},
+                           {'C', 100},
+                           {'D', 500},
+                           {'M', 1000}};
+
+  int result = 0;
+  for (int i = 0; i < s.size(); ++i) {
+    int v = m[s[i]];
+    if ((i + 1) < s.size() - 1 and v < m[s[i + 1]]) {
+      result += m[s[i + 1]] - v;
+      ++i;
+      continue;
+    }
+    result += m[s[i]];
+  }
+  return result;
+}
+
+// 从第二个字符串开始，都与第一个字符串逐个字符比较，不一致就退出
+string leetcode_14(vector<string> &strs) {
+  if (strs.empty()) {
+    return "";
+  }
+  if (strs.size() == 1) {
+    return strs[0];
+  }
+  int i = 0;
+  bool result = true;
+  for (int j = 0; j < strs[0].size(); ++j) {
+    for (int k = 1; k < strs.size(); ++k) {
+      result = strs[k][j] == strs[0][j];
+      if (!result) {
+        break;
+      }
+    }
+    if (!result) {
+      break;
+    } else {
+      i++;
+    }
+  }
+  if (i > 0) {
+    return strs[0].substr(0, i + 1);
+  }
+  return "";
 }
 
 int leetcode_27(vector<int> &nums, int val) {
