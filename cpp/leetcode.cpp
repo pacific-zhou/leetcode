@@ -221,6 +221,14 @@ int leetcode_27(vector<int> &nums, int val) {
   return i;
 }
 
+int leetcode_28(string haystack, string needle) {
+  auto index = haystack.find(needle);
+  if (index == string::npos) {
+    return -1;
+  }
+  return index;
+}
+
 int leetcode_58(string s) {
   bool b = false;
   int c = 0;
@@ -275,7 +283,7 @@ string leetcode_151(string s) {
     if (s[j] != ' ' and flag) {
       flag = false;
       m = j;
-      if(j == s.size() - 1) {
+      if (j == s.size() - 1) {
         string substr = s.substr(m, j - m + 1);
         substrs.push_back(substr);
       }
