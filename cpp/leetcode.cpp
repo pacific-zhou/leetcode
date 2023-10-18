@@ -257,6 +257,50 @@ void leetcode_88_2(vector<int> &nums1, int m, vector<int> &nums2, int n) {
   std::sort(nums1.begin(), nums1.end());
 }
 
+// "  h  ello world tiffzhou  "
+string leetcode_151(string s) {
+  int m = 0;
+  bool flag = true;
+  vector<string> substrs;
+  for (int j = 0; j < s.size(); ++j) {
+    if (s[j] == ' ' and flag) {
+      continue;
+    }
+    if (s[j] == ' ' and !flag) {
+      flag = true;
+      string substr = s.substr(m, j - m);
+      substrs.push_back(substr);
+      continue;
+    }
+    if (s[j] != ' ' and flag) {
+      flag = false;
+      m = j;
+      if(j == s.size() - 1) {
+        string substr = s.substr(m, j - m + 1);
+        substrs.push_back(substr);
+      }
+      continue;
+    }
+    if (j == s.size() - 1 and !flag) {
+      flag = true;
+      string substr = s.substr(m, j - m + 1);
+      substrs.push_back(substr);
+      continue;
+    }
+  }
+  if (substrs.size() == 0) {
+    return "";
+  }
+  string result;
+  for (int i = substrs.size() - 1; i >= 0; --i) {
+    result += substrs[i];
+    if (i != 0) {
+      result += " ";
+    }
+  }
+  return result;
+}
+
 // main entry point
 int main() {
   cout << "Hello, World!" << endl;
