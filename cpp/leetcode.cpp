@@ -3,6 +3,8 @@
 #include <vector>
 #include <algorithm>
 #include <map>
+#include <cctype>
+#include <unordered_map>
 
 using namespace std;
 
@@ -263,6 +265,80 @@ void leetcode_88_2(vector<int> &nums1, int m, vector<int> &nums2, int n) {
     nums1[m + i] = nums2[i];
   }
   std::sort(nums1.begin(), nums1.end());
+}
+
+bool leetcode_383_1(string ransomNote, string magazine) {
+  unordered_map<char, int> m;
+  for (char c: magazine) {
+    if (m.find(c) != m.end()) {
+      m[c]++;
+    } else {
+      m[c] = 1;
+    }
+  }
+
+  for (char c: ransomNote) {
+    if (m.find(c) != m.end() and m[c] > 0) {
+      m[c]--;
+    } else {
+      return false;
+    }
+  }
+  return true;
+}
+
+bool leetcode_383_2(string ransomNote, string magazine) {
+  if (ransomNote.size() > magazine.size()) {
+    return false;
+  }
+  vector<int> v(26, 0);
+  for (char c: magazine) {
+    v[c - 'a']++;
+  }
+  for (char c: ransomNote) {
+    if (--v[c - 'a'] < 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
+
+bool isAlpha(char c) {
+  if (c >= 'a' and c <= 'z') {
+    return true;
+  }
+  if (c >= 'A' and c <= 'Z') {
+    return true;
+  }
+  return false;
+}
+
+bool toLower(char c) {
+  if (c >= 'A' and c <= 'Z') {
+    return toLower(c);
+  }
+  return c;
+}
+
+bool isPalindrome(string s) {
+  int j = s.size() - 1;
+  for (int i = 0; i < s.size() / 2; ++i) {
+    if (isAlpha(s[i])) {
+      for (; j >= 0; --j) {
+        if (isAlpha(s[j])) {
+          if (toLower(s[i]) == toLower(s[j])) {
+            break;
+          } else {
+            return false;
+          }
+        }
+        continue;
+      }
+    }
+    continue;
+  }
+  return true;
 }
 
 // "  h  ello world tiffzhou  "
