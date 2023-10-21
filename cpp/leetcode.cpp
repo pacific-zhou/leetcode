@@ -5,6 +5,7 @@
 #include <map>
 #include <cctype>
 #include <unordered_map>
+#include <set>
 
 using namespace std;
 
@@ -265,6 +266,25 @@ void leetcode_88_2(vector<int> &nums1, int m, vector<int> &nums2, int n) {
     nums1[m + i] = nums2[i];
   }
   std::sort(nums1.begin(), nums1.end());
+}
+
+bool leetcode_205(string s, string t) {
+
+  unordered_map<char, char> m;
+  unordered_map<char, char> n;
+  for (int i = 0; i < t.size(); ++i) {
+    if (m.find(t[i]) != m.end() && n.find(s[i]) != n.end()) {
+      if (m[t[i]] != s[i] or n[s[i] != m[i]]) {
+        return false;
+      }
+    } else if (m.find(t[i]) == m.end() && n.find(s[i]) == n.end()) {
+      m[t[i]] = s[i];
+      n[s[i]] = t[i];
+    } else{
+      return false;
+    }
+  }
+  return true;
 }
 
 bool leetcode_383_1(string ransomNote, string magazine) {
