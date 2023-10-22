@@ -280,12 +280,44 @@ bool leetcode_205(string s, string t) {
     } else if (m.find(t[i]) == m.end() && n.find(s[i]) == n.end()) {
       m[t[i]] = s[i];
       n[s[i]] = t[i];
-    } else{
+    } else {
       return false;
     }
   }
   return true;
 }
+
+bool leetcode_290(string pattern, string s) {
+  unordered_map<char, string> m;
+  unordered_map<string, char> n;
+  int j = 0, k = 0;
+  for (int i = 0; i < s.size(); ++i) {
+    if (s[i] == ' ' or i == s.size() - 1) {
+      string substr = s.substr(k, i - k);
+      if (i == s.size() - 1) {
+        substr = s.substr(k, i - k + 1);
+      }
+      char c = pattern[j];
+      if (n.find(substr) != n.end() && m.find(c) != m.end()) {
+        if (n[substr] != c or m[c] != substr) {
+          return false;
+        }
+      } else if (n.find(substr) == n.end() && m.find(c) == m.end()) {
+        n[substr] = c;
+        m[c] = substr;
+      } else {
+        return false;
+      }
+      j++;
+      k = i + 1;
+    }
+  }
+  if (j < pattern.size()) {
+    return false;
+  }
+  return true;
+}
+
 
 bool leetcode_383_1(string ransomNote, string magazine) {
   unordered_map<char, int> m;
