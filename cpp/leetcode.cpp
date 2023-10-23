@@ -287,6 +287,26 @@ bool leetcode_205(string s, string t) {
   return true;
 }
 
+vector<string> leetcode_228(vector<int> &nums) {
+  vector<string> result;
+  int i = 0;
+  while (i < nums.size()) {
+    int low = i;
+    i++;
+    while (i < nums.size() and nums[i] == nums[i - 1] + 1) {
+      i++;
+    }
+    int high = i - 1;
+    string element = to_string(nums[low]);
+    if (high > low) {
+      element.append("->");
+      element.append(to_string(nums[high]));
+    }
+    result.push_back(element);
+  }
+  return result;
+}
+
 bool leetcode_290(string pattern, string s) {
   unordered_map<char, string> m;
   unordered_map<string, char> n;
