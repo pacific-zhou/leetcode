@@ -386,19 +386,19 @@ bool isAlpha(char c) {
   return false;
 }
 
-bool toLower(char c) {
+char toLower(char c) {
   if (c >= 'A' and c <= 'Z') {
-    return toLower(c);
+    return c + 32;
   }
   return c;
 }
 
-bool isPalindrome(string s) {
+bool leetcode_125_1(string s) {
   int j = s.size() - 1;
   for (int i = 0; i < s.size() / 2; ++i) {
-    if (isAlpha(s[i])) {
+    if (isAlpha(s[i]) or isdigit(s[i])) {
       for (; j >= 0; --j) {
-        if (isAlpha(s[j])) {
+        if (isAlpha(s[j]) or isdigit(s[i])) {
           if (toLower(s[i]) == toLower(s[j])) {
             break;
           } else {
@@ -411,6 +411,17 @@ bool isPalindrome(string s) {
     continue;
   }
   return true;
+}
+
+bool leetcode_125_2(string s) {
+  string new_str;
+  for (char c: s) {
+    if (isAlpha(c) or isdigit(c)) {
+      new_str.push_back(toLower(c));
+    }
+  }
+  string reverse_str(new_str.rbegin(), new_str.rend());
+  return reverse_str == new_str;
 }
 
 // "  h  ello world tiffzhou  "
