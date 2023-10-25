@@ -283,6 +283,34 @@ void leetcode_88_2(vector<int> &nums1, int m, vector<int> &nums2, int n) {
   std::sort(nums1.begin(), nums1.end());
 }
 
+int getSum(int n) {
+  int sum = 0;
+  while (n > 0) {
+    int div = n % 10;
+    sum += div * div;
+    n = n / 10;
+  }
+  return sum;
+}
+
+bool leetcode_202(int n) {
+  set<int> s;
+  while (true) {
+    int sum = getSum(n);
+    if (sum == 1) {
+      return true;
+    } else {
+      if (s.find(sum) == s.end()) {
+        s.insert(sum);
+        n = sum;
+      } else {
+        return false;
+      }
+    }
+  }
+  return false;
+}
+
 bool leetcode_205(string s, string t) {
 
   unordered_map<char, char> m;
