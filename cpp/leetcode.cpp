@@ -9,6 +9,21 @@
 
 using namespace std;
 
+vector<int> leetcode_1(vector<int> &nums, int target) {
+  vector<int> result;
+  unordered_map<int, int> m;
+  for (int i = 0; i < nums.size(); ++i) {
+    int t = target - nums[i];
+    if (m.find(t) != m.end()) {
+      result.push_back(m[t]);
+      result.push_back(i);
+    } else {
+      m[nums[i]] = i;
+    }
+  }
+  return result;
+}
+
 string leetcode_12_1(int num) {
   std::vector<int> l = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
   std::map<int, string> m = {{1,    "I"},
