@@ -283,6 +283,29 @@ void leetcode_88_2(vector<int> &nums1, int m, vector<int> &nums2, int n) {
   std::sort(nums1.begin(), nums1.end());
 }
 
+struct ListNode {
+    int val;
+    ListNode *next;
+
+    ListNode(int x) : val(x), next(NULL) {}
+};
+
+bool leetcode_141(ListNode *head) {
+  if(head == NULL or head->next == NULL) {
+    return false;
+  }
+  ListNode *slow = head;
+  ListNode *fast = head->next;
+  while (fast != NULL and fast->next != NULL) {
+    if (slow == fast) {
+      return true;
+    }
+    fast = fast->next->next;
+    slow = slow->next;
+  }
+  return false;
+}
+
 int getSum(int n) {
   int sum = 0;
   while (n > 0) {
