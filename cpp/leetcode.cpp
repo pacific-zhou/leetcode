@@ -229,6 +229,33 @@ string leetcode_14(vector<string> &strs) {
   return "";
 }
 
+struct ListNode {
+    int val;
+    ListNode *next;
+
+    ListNode() : val(0), next(nullptr) {}
+
+    ListNode(int x) : val(x), next(nullptr) {}
+
+    ListNode(int x, ListNode *next) : val(x), next(next) {}
+};
+
+ListNode *leetcode_21(ListNode *list1, ListNode *list2) {
+  ListNode *head = new ListNode(), *tmp = head;
+  while (list1 != NULL and list2 != NULL) {
+    if (list1->val <= list2->val) {
+      tmp->next = list1;
+      list1 = list1->next;
+    } else {
+      tmp->next = list2;
+      list2 = list2->next;
+    }
+    tmp = tmp->next;
+  }
+  tmp->next = list1 == NULL ? list2 : list1;
+  return head->next;
+}
+
 int leetcode_27(vector<int> &nums, int val) {
   int i = 0;
   for (const int j: nums) {
@@ -291,7 +318,7 @@ struct ListNode {
 };
 
 bool leetcode_141(ListNode *head) {
-  if(head == NULL or head->next == NULL) {
+  if (head == NULL or head->next == NULL) {
     return false;
   }
   ListNode *slow = head;
@@ -440,7 +467,6 @@ bool leetcode_383_2(string ransomNote, string magazine) {
   }
   return true;
 }
-
 
 bool isAlpha(char c) {
   if (c >= 'a' and c <= 'z') {
