@@ -310,12 +310,12 @@ void leetcode_88_2(vector<int> &nums1, int m, vector<int> &nums2, int n) {
   std::sort(nums1.begin(), nums1.end());
 }
 
-struct ListNode {
+/*struct ListNode {
     int val;
     ListNode *next;
 
     ListNode(int x) : val(x), next(NULL) {}
-};
+};*/
 
 bool leetcode_141(ListNode *head) {
   if (head == NULL or head->next == NULL) {
@@ -558,6 +558,27 @@ string leetcode_151(string s) {
     }
   }
   return result;
+}
+
+bool leetcode_392(string s, string t) {
+  if (s.empty()) {
+    return true;
+  }
+  int i = 0, j = 0;
+  bool find = false;
+  while (i < s.size() and j < t.size()) {
+    if (s[i] == t[j]) {
+      i++;
+      find = true;
+    } else {
+      find = false;
+    }
+    j++;
+  }
+  if (i < s.size()) {
+    return false;
+  }
+  return find;
 }
 
 // main entry point
