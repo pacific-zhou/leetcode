@@ -400,6 +400,22 @@ vector<string> leetcode_228(vector<int> &nums) {
   return result;
 }
 
+bool leetcode_242(string s, string t) {
+  vector<int> v(26, 0);
+  for (char c: s) {
+    v[c - 'a']++;
+  }
+  for (char c: t) {
+    v[c - 'a']--;
+  }
+  for (int c: v) {
+    if (c != 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
 bool leetcode_290(string pattern, string s) {
   unordered_map<char, string> m;
   unordered_map<string, char> n;
