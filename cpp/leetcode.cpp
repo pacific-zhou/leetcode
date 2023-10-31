@@ -322,6 +322,23 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
+bool leetcode_100(TreeNode *p, TreeNode *q) {
+  if (p == nullptr and q == nullptr) {
+    return true;
+  }
+  if (p == nullptr and q != nullptr) {
+    return false;
+  }
+  if (p != nullptr and q == nullptr) {
+    return false;
+  }
+  if (p->val == q->val) {
+    return leetcode_100(p->left, q->left) and leetcode_100(p->right, q->right);
+  } else {
+    return false;
+  }
+}
+
 int leetcode_104(TreeNode *root) {
   if (root == nullptr) {
     return 0;
