@@ -310,6 +310,25 @@ void leetcode_88_2(vector<int> &nums1, int m, vector<int> &nums2, int n) {
   std::sort(nums1.begin(), nums1.end());
 }
 
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+
+    TreeNode() : val(0), left(nullptr), right(nullptr) {}
+
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+
+    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+};
+
+int leetcode_104(TreeNode *root) {
+  if (root == nullptr) {
+    return 0;
+  }
+  return max(leetcode_104(root->left), leetcode_104(root->right)) + 1;
+}
+
 /*struct ListNode {
     int val;
     ListNode *next;
