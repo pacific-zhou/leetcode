@@ -436,6 +436,30 @@ vector<string> leetcode_228(vector<int> &nums) {
   return result;
 }
 
+//  1 2 3 4
+//s 1 2 6 24
+//e 24 24 12 4
+//  24,12,8,6
+vector<int> leetcode_238(vector<int> &nums) {
+  vector<int> s(nums.size());
+  vector<int> e(nums.size());
+  vector<int> result(nums.size());
+  s[0] = nums[0];
+  for (int i = 1; i < nums.size(); ++i) {
+    s[i] = s[i - 1] * nums[i];
+  }
+  e[nums.size() - 1] = nums[nums.size() - 1];
+  for (int i = nums.size() - 2; i >= 0; --i) {
+    e[i] = e[i + 1] * nums[i];
+  }
+  result[0] = e[1];
+  result[nums.size() - 1] = s[nums.size() - 2];
+  for (int i = 1; i < nums.size() - 1; ++i) {
+    result[i] = s[i - 1] * e[i + 1];
+  }
+  return result;
+}
+
 bool leetcode_242(string s, string t) {
   vector<int> v(26, 0);
   for (char c: s) {
