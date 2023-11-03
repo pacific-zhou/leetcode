@@ -416,6 +416,19 @@ bool leetcode_205(string s, string t) {
   return true;
 }
 
+bool leetcode_219(vector<int> &nums, int k) {
+  map<int, int> m;
+  for (int i = 0; i < nums.size(); ++i) {
+    if (m.find(nums[i]) != m.end()) {
+      if (i - m[nums[i]] <= k) {
+        return true;
+      }
+    }
+    m[nums[i]] = i;
+  }
+  return false;
+}
+
 vector<string> leetcode_228(vector<int> &nums) {
   vector<string> result;
   int i = 0;
@@ -506,7 +519,6 @@ bool leetcode_290(string pattern, string s) {
   }
   return true;
 }
-
 
 bool leetcode_383_1(string ransomNote, string magazine) {
   unordered_map<char, int> m;
