@@ -229,6 +229,25 @@ string leetcode_14(vector<string> &strs) {
   return "";
 }
 
+
+bool leetcode_20(string s) {
+  stack<char> st;
+  map<char, char> m = {{')', '('},
+                       {'}', '{'},
+                       {']', '['}};
+  for (char c: s) {
+    if (m.find(c) != m.end()) {
+      if (st.empty() or m[c] != st.top()) {
+        return false;
+      }
+      st.pop();
+    } else {
+      st.push(c);
+    }
+  }
+  return st.empty();
+}
+
 struct ListNode {
     int val;
     ListNode *next;
