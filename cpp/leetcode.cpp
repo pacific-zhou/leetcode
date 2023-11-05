@@ -6,6 +6,8 @@
 #include <cctype>
 #include <unordered_map>
 #include <set>
+#include <climits>
+#include <stack>
 
 using namespace std;
 
@@ -446,6 +448,18 @@ bool leetcode_219(vector<int> &nums, int k) {
     m[nums[i]] = i;
   }
   return false;
+}
+
+TreeNode *leetcode_226(TreeNode *root) {
+  if (root == NULL) {
+    return NULL;
+  }
+  TreeNode *tmp = root->left;
+  root->left = root->right;
+  root->right = tmp;
+  invertTree(root->left);
+  invertTree(root->right);
+  return root;
 }
 
 vector<string> leetcode_228(vector<int> &nums) {
