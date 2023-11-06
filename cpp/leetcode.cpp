@@ -310,6 +310,29 @@ int leetcode_58(string s) {
   return c;
 }
 
+string leetcode_67(string a, string b) {
+  string result;
+  int i = a.size() - 1, j = b.size() - 1;
+  int carry = 0;
+  while (i >= 0 or j >= 0) {
+    if (i >= 0) {
+      carry += a[i] - '0';
+    }
+    if (j >= 0) {
+      carry += b[j] - '0';
+    }
+    result += to_string(carry % 2);
+    carry /= 2;
+    i--;
+    j--;
+  }
+  if (carry > 0) {
+    result.push_back('1');
+  }
+  std::reverse(result.begin(), result.end());
+  return result;
+}
+
 void leetcode_88_1(vector<int> &nums1, int m, vector<int> &nums2, int n) {
   int i = m + n;
   while (m > 0 and n > 0) {
