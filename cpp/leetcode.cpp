@@ -473,6 +473,11 @@ bool leetcode_219(vector<int> &nums, int k) {
   return false;
 }
 
+int leetcode_222(TreeNode *root) {
+  if (root == NULL) return 0;
+  return 1 + leetcode_222(root->left) + leetcode_222(root->right);
+}
+
 TreeNode *leetcode_226(TreeNode *root) {
   if (root == NULL) {
     return NULL;
