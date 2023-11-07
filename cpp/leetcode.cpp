@@ -730,6 +730,35 @@ bool leetcode_392(string s, string t) {
   return find;
 }
 
+vector<int> traverse(TreeNode *root) {
+  if (root == NULL) {
+    return vector<int>();
+  }
+  vector<int> result;
+  vector<int> left_result = traverse(root->left);
+  vector<int> right_result = traverse(root->right);
+  for (int i: left_result) {
+    result.emplace_back(i);
+  }
+  result.emplace_back(root->val);
+  for (int i: right_result) {
+    result.emplace_back(i);
+  }
+  return result;
+}
+
+int leetcode_530(TreeNode *root) {
+  vector<int> v = traverse(root);
+  std::sort(v.begin(), v.end());
+  int min_gap = INT_MAX;
+  for (int i = 1; i < v.size(); ++i) {
+    if (v[i] - v[i - 1] < min_gap) {
+      min_gap = v[i] - v[i - 1];
+    }
+  }
+  return min_gap;
+}
+
 // main entry point
 int main() {
   cout << "Hello, World!" << endl;
