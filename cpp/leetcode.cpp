@@ -390,6 +390,16 @@ int leetcode_104(TreeNode *root) {
   return max(leetcode_104(root->left), leetcode_104(root->right)) + 1;
 }
 
+bool leetcode_112(TreeNode *root, int targetSum) {
+  if (root == nullptr) {
+    return false;
+  }
+  if(root->left == nullptr and root->right == nullptr) {
+    return targetSum == root->val;
+  }
+  return leetcode_112(root->left, targetSum - root->val) || leetcode_112(root->right, targetSum - root->val);
+}
+
 /*struct ListNode {
     int val;
     ListNode *next;
