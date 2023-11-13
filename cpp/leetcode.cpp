@@ -26,6 +26,18 @@ vector<int> leetcode_1(vector<int> &nums, int target) {
   return result;
 }
 
+bool leetcode_9(int x) {
+  if (x < 0) {
+    return false;
+  }
+  long reverse = 0, t = x;
+  while (t > 0) {
+    reverse = reverse * 10 + t % 10;
+    t = t / 10;
+  }
+  return x == reverse;
+}
+
 string leetcode_12_1(int num) {
   std::vector<int> l = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
   std::map<int, string> m = {{1,    "I"},
@@ -394,7 +406,7 @@ bool leetcode_112(TreeNode *root, int targetSum) {
   if (root == nullptr) {
     return false;
   }
-  if(root->left == nullptr and root->right == nullptr) {
+  if (root->left == nullptr and root->right == nullptr) {
     return targetSum == root->val;
   }
   return leetcode_112(root->left, targetSum - root->val) || leetcode_112(root->right, targetSum - root->val);
