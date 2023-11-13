@@ -378,6 +378,7 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
+
 bool leetcode_100(TreeNode *p, TreeNode *q) {
   if (p == nullptr and q == nullptr) {
     return true;
@@ -393,6 +394,26 @@ bool leetcode_100(TreeNode *p, TreeNode *q) {
   } else {
     return false;
   }
+}
+
+bool check(TreeNode *left, TreeNode *right) {
+  if (left != nullptr and right != nullptr) {
+    if (left->val != right->val) {
+      return false;
+    }
+    return check(left->left, right->right) and check(left->right, right->left);
+  }
+  if (left == nullptr and right != nullptr) {
+    return false;
+  }
+  if (left != nullptr and right == nullptr) {
+    return false;
+  }
+  return true;
+}
+
+bool leetcode_101(TreeNode *root) {
+  return check(root, root);
 }
 
 int leetcode_104(TreeNode *root) {
