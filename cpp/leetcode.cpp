@@ -802,6 +802,32 @@ int leetcode_530(TreeNode *root) {
   return min_gap;
 }
 
+void dfs(TreeNode *node, int level, vector<double> &sum, vector<int> count) {
+  if (node == nullptr) {
+    return;
+  }
+  if (level < sum.size()) {
+    sum[level] += node->val;
+    count[level]++;
+  } else {
+    sum.push_back(1.0 * node->val);
+    count.push_back(1);
+  }
+  dfs(node->left, level + 1, sum, count);
+  dfs(node->right, level + 1, sum, count);
+}
+
+vector<double> leetcode_637(TreeNode *root) {
+  vector<double> sum;
+  vector<int> count;
+  dfs(root, 0, sum, count);
+  vector<double> result;
+  for (int i = 0; i < sum.size(); i++) {
+    result.push_back(sum[i] / count[i]);
+  }
+  return result;
+}
+
 // main entry point
 int main() {
   cout << "Hello, World!" << endl;
