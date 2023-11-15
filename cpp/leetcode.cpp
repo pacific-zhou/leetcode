@@ -423,6 +423,21 @@ int leetcode_104(TreeNode *root) {
   return max(leetcode_104(root->left), leetcode_104(root->right)) + 1;
 }
 
+TreeNode *helper(vector<int> &nums, int left, int right) {
+  if (left > right) {
+    return nullptr;
+  }
+  int mid = (left + right) / 2;
+  TreeNode *node = new TreeNode(nums[mid]);
+  node->left = helper(nums, left, mid - 1);
+  node->right = helper(nums, mid + 1, right);
+  return node;
+}
+
+TreeNode *leetcode_108(vector<int> &nums) {
+  return helper(nums, 0, nums.size() - 1);
+}
+
 bool leetcode_112(TreeNode *root, int targetSum) {
   if (root == nullptr) {
     return false;
