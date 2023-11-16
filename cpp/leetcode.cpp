@@ -257,6 +257,43 @@ string leetcode_14(vector<string> &strs) {
   return "";
 }
 
+vector<vector<int>> leetcode_15(vector<int> &nums) {
+  vector<vector<int>> result;
+  if (nums.size() < 3) {
+    return result;
+  } // -4 -1 -1 0 1 2
+  std::sort(nums.begin(), nums.end());
+  for (int i = 0; i < nums.size(); ++i) {
+    if (nums[i] > 0) {
+      break;
+    }
+    if (i > 0 and nums[i] == nums[i - 1]) {
+      continue;
+    }
+    int l = i + 1;
+    int r = nums.size() - 1;
+    while (l < r) {
+      int t = nums[i] + nums[l] + nums[r];
+      if (t == 0) {
+        vector<int> m = {nums[i], nums[l], nums[r]};
+        result.push_back(m);
+        while (l < r and nums[l] == nums[l + 1]) {
+          l++;
+        }
+        while (l < r and nums[r] == nums[r - 1]) {
+          r--;
+        }
+        l++;
+        r--;
+      } else if (t > 0) {
+        r--;
+      } else if (t < 0) {
+        l++;
+      }
+    }
+  }
+  return result;
+}
 
 bool leetcode_20(string s) {
   stack<char> st;
@@ -880,11 +917,14 @@ int main() {
   cout << "Hello, World!" << endl;
 
   // 58
-  std::string str = "luffy is still joyboy";
-  int c = leetcode_58(str);
-  cout << "count:" << c << endl;
+//  std::string str = "luffy is still joyboy";
+//  int c = leetcode_58(str);
+//  cout << "count:" << c << endl;
 
-  leetcode_3("abba");
+//  leetcode_3("abba");
+
+  vector<int> a = {-1, 0, 1, 2, -1, -4};
+  threeSum(a);
 
   cout << "finished" << endl;
   return 0;
