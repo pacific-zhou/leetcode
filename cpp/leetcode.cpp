@@ -612,8 +612,8 @@ TreeNode *leetcode_226(TreeNode *root) {
   TreeNode *tmp = root->left;
   root->left = root->right;
   root->right = tmp;
-  invertTree(root->left);
-  invertTree(root->right);
+  leetcode_226(root->left);
+  leetcode_226(root->right);
   return root;
 }
 
