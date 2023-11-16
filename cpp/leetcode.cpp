@@ -1,13 +1,13 @@
 // date 20231011
-#include <iostream>
-#include <vector>
 #include <algorithm>
-#include <map>
 #include <cctype>
-#include <unordered_map>
-#include <set>
 #include <climits>
+#include <iostream>
+#include <map>
+#include <set>
 #include <stack>
+#include <unordered_map>
+#include <vector>
 
 using namespace std;
 
@@ -40,23 +40,14 @@ bool leetcode_9(int x) {
 
 string leetcode_12_1(int num) {
   std::vector<int> l = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
-  std::map<int, string> m = {{1,    "I"},
-                             {4,    "IV"},
-                             {5,    "V"},
-                             {9,    "IX"},
-                             {10,   "X"},
-                             {40,   "XL"},
-                             {50,   "L"},
-                             {90,   "XC"},
-                             {100,  "C"},
-                             {400,  "CD"},
-                             {500,  "D"},
-                             {900,  "CM"},
+  std::map<int, string> m = {{1, "I"},   {4, "IV"},   {5, "V"},   {9, "IX"},
+                             {10, "X"},  {40, "XL"},  {50, "L"},  {90, "XC"},
+                             {100, "C"}, {400, "CD"}, {500, "D"}, {900, "CM"},
                              {1000, "M"}};
   string result;
   int mod = 0, div = 0;
   while (true) {
-    for (int i: l) {
+    for (int i : l) {
       mod = num / i;
       div = num % i;
       if (mod >= 1) {
@@ -75,21 +66,11 @@ string leetcode_12_1(int num) {
 
 string leetcode_12_2(int num) {
   const pair<int, string> valueSymbols[] = {
-          {1000, "M"},
-          {900,  "CM"},
-          {500,  "D"},
-          {400,  "CD"},
-          {100,  "C"},
-          {90,   "XC"},
-          {50,   "L"},
-          {40,   "XL"},
-          {10,   "X"},
-          {9,    "IX"},
-          {5,    "V"},
-          {4,    "IV"},
-          {1,    "I"}};
+      {1000, "M"}, {900, "CM"}, {500, "D"}, {400, "CD"}, {100, "C"},
+      {90, "XC"},  {50, "L"},   {40, "XL"}, {10, "X"},   {9, "IX"},
+      {5, "V"},    {4, "IV"},   {1, "I"}};
   string result;
-  for (const auto &[k, v]: m) {
+  for (const auto &[k, v] : m) {
     while (num >= k) {
       num -= k;
       result += v;
@@ -193,13 +174,8 @@ C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。
  DCXXI
  */
 int leetcode_13_2(string s) {
-  std::map<char, int> m = {{'I', 1},
-                           {'V', 5},
-                           {'X', 10},
-                           {'L', 50},
-                           {'C', 100},
-                           {'D', 500},
-                           {'M', 1000}};
+  std::map<char, int> m = {{'I', 1},   {'V', 5},   {'X', 10},  {'L', 50},
+                           {'C', 100}, {'D', 500}, {'M', 1000}};
 
   int result = 0;
   for (int i = 0; i < s.size(); ++i) {
@@ -246,10 +222,8 @@ string leetcode_14(vector<string> &strs) {
 
 bool leetcode_20(string s) {
   stack<char> st;
-  map<char, char> m = {{')', '('},
-                       {'}', '{'},
-                       {']', '['}};
-  for (char c: s) {
+  map<char, char> m = {{')', '('}, {'}', '{'}, {']', '['}};
+  for (char c : s) {
     if (m.find(c) != m.end()) {
       if (st.empty() or m[c] != st.top()) {
         return false;
@@ -263,14 +237,14 @@ bool leetcode_20(string s) {
 }
 
 struct ListNode {
-    int val;
-    ListNode *next;
+  int val;
+  ListNode *next;
 
-    ListNode() : val(0), next(nullptr) {}
+  ListNode() : val(0), next(nullptr) {}
 
-    ListNode(int x) : val(x), next(nullptr) {}
+  ListNode(int x) : val(x), next(nullptr) {}
 
-    ListNode(int x, ListNode *next) : val(x), next(next) {}
+  ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
 ListNode *leetcode_21(ListNode *list1, ListNode *list2) {
@@ -291,7 +265,7 @@ ListNode *leetcode_21(ListNode *list1, ListNode *list2) {
 
 int leetcode_27(vector<int> &nums, int val) {
   int i = 0;
-  for (const int j: nums) {
+  for (const int j : nums) {
     if (j != val) {
       nums[i++] = j;
     }
@@ -367,17 +341,17 @@ void leetcode_88_2(vector<int> &nums1, int m, vector<int> &nums2, int n) {
 }
 
 struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
+  int val;
+  TreeNode *left;
+  TreeNode *right;
 
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
+  TreeNode() : val(0), left(nullptr), right(nullptr) {}
 
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+  TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
 
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+  TreeNode(int x, TreeNode *left, TreeNode *right)
+      : val(x), left(left), right(right) {}
 };
-
 
 bool leetcode_100(TreeNode *p, TreeNode *q) {
   if (p == nullptr and q == nullptr) {
@@ -412,9 +386,7 @@ bool check(TreeNode *left, TreeNode *right) {
   return true;
 }
 
-bool leetcode_101(TreeNode *root) {
-  return check(root, root);
-}
+bool leetcode_101(TreeNode *root) { return check(root, root); }
 
 int leetcode_104(TreeNode *root) {
   if (root == nullptr) {
@@ -445,7 +417,8 @@ bool leetcode_112(TreeNode *root, int targetSum) {
   if (root->left == nullptr and root->right == nullptr) {
     return targetSum == root->val;
   }
-  return leetcode_112(root->left, targetSum - root->val) || leetcode_112(root->right, targetSum - root->val);
+  return leetcode_112(root->left, targetSum - root->val) ||
+         leetcode_112(root->right, targetSum - root->val);
 }
 
 /*struct ListNode {
@@ -500,7 +473,6 @@ bool leetcode_202(int n) {
 }
 
 bool leetcode_205(string s, string t) {
-
   unordered_map<char, char> m;
   unordered_map<char, char> n;
   for (int i = 0; i < t.size(); ++i) {
@@ -518,6 +490,25 @@ bool leetcode_205(string s, string t) {
   return true;
 }
 
+int leetcode_209(int target, vector<int> &nums) {
+  if (nums.size() == 0) {
+    return 0;
+  }
+  int fast = 0, slow = 0;
+  int sum = 0;
+  int min_count = INT_MAX;
+  while (fast < nums.size()) {
+    sum += nums[fast];
+    while (sum >= target) {
+      min_count = min(min_count, (fast - slow + 1));
+      sum -= num[slow];
+      slow++;
+    }
+    fast++;
+    return min_count == INT_MAX ? 0 : min_count;
+  }
+}
+
 bool leetcode_219(vector<int> &nums, int k) {
   map<int, int> m;
   for (int i = 0; i < nums.size(); ++i) {
@@ -532,7 +523,8 @@ bool leetcode_219(vector<int> &nums, int k) {
 }
 
 int leetcode_222(TreeNode *root) {
-  if (root == NULL) return 0;
+  if (root == NULL)
+    return 0;
   return 1 + leetcode_222(root->left) + leetcode_222(root->right);
 }
 
@@ -569,8 +561,8 @@ vector<string> leetcode_228(vector<int> &nums) {
 }
 
 //  1 2 3 4
-//s 1 2 6 24
-//e 24 24 12 4
+// s 1 2 6 24
+// e 24 24 12 4
 //  24,12,8,6
 vector<int> leetcode_238(vector<int> &nums) {
   vector<int> s(nums.size());
@@ -594,13 +586,13 @@ vector<int> leetcode_238(vector<int> &nums) {
 
 bool leetcode_242(string s, string t) {
   vector<int> v(26, 0);
-  for (char c: s) {
+  for (char c : s) {
     v[c - 'a']++;
   }
-  for (char c: t) {
+  for (char c : t) {
     v[c - 'a']--;
   }
-  for (int c: v) {
+  for (int c : v) {
     if (c != 0) {
       return false;
     }
@@ -641,7 +633,7 @@ bool leetcode_290(string pattern, string s) {
 
 bool leetcode_383_1(string ransomNote, string magazine) {
   unordered_map<char, int> m;
-  for (char c: magazine) {
+  for (char c : magazine) {
     if (m.find(c) != m.end()) {
       m[c]++;
     } else {
@@ -649,7 +641,7 @@ bool leetcode_383_1(string ransomNote, string magazine) {
     }
   }
 
-  for (char c: ransomNote) {
+  for (char c : ransomNote) {
     if (m.find(c) != m.end() and m[c] > 0) {
       m[c]--;
     } else {
@@ -664,10 +656,10 @@ bool leetcode_383_2(string ransomNote, string magazine) {
     return false;
   }
   vector<int> v(26, 0);
-  for (char c: magazine) {
+  for (char c : magazine) {
     v[c - 'a']++;
   }
-  for (char c: ransomNote) {
+  for (char c : ransomNote) {
     if (--v[c - 'a'] < 0) {
       return false;
     }
@@ -714,7 +706,7 @@ bool leetcode_125_1(string s) {
 
 bool leetcode_125_2(string s) {
   string new_str;
-  for (char c: s) {
+  for (char c : s) {
     if (isAlpha(c) or isdigit(c)) {
       new_str.push_back(toLower(c));
     }
@@ -795,11 +787,11 @@ vector<int> traverse(TreeNode *root) {
   vector<int> result;
   vector<int> left_result = traverse(root->left);
   vector<int> right_result = traverse(root->right);
-  for (int i: left_result) {
+  for (int i : left_result) {
     result.emplace_back(i);
   }
   result.emplace_back(root->val);
-  for (int i: right_result) {
+  for (int i : right_result) {
     result.emplace_back(i);
   }
   return result;
