@@ -88,7 +88,7 @@ string leetcode_12_1(int num) {
 }
 
 string leetcode_12_2(int num) {
-  const pair<int, string> valueSymbols[] = {
+  const pair<int, string> m[] = {
           {1000, "M"},
           {900,  "CM"},
           {500,  "D"},
@@ -103,10 +103,10 @@ string leetcode_12_2(int num) {
           {4,    "IV"},
           {1,    "I"}};
   string result;
-  for (const auto &[k, v] : m) {
-    while (num >= k) {
-      num -= k;
-      result += v;
+  for (const auto &e: m) {
+    while (num >= e.first) {
+      num -= e.first;
+      result += e.second;
     }
     if (num == 0) {
       break;
