@@ -52,6 +52,20 @@ bool leetcode_9(int x) {
   return x == reverse;
 }
 
+int leetcode_11(vector<int> &height) {
+  int i = 0, j = height.size() - 1;
+  int area = 0;
+  while (i < j) {
+    area = max(area, min(height[i], height[j]) * (j - i));
+    if (height[i] >= height[j]) {
+      j--;
+    } else {
+      i++;
+    }
+  }
+  return area;
+}
+
 string leetcode_12_1(int num) {
   std::vector<int> l = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
   std::map<int, string> m = {{1,    "I"},
@@ -941,10 +955,10 @@ int main() {
 //  int c = leetcode_58(str);
 //  cout << "count:" << c << endl;
 
-//  leetcode_3("abba");
+  leetcode_3("abba");
 
   vector<int> a = {-1, 0, 1, 2, -1, -4};
-  threeSum(a);
+//  threeSum(a);
 
   cout << "finished" << endl;
   return 0;
