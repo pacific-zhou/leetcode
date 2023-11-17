@@ -521,6 +521,26 @@ bool leetcode_141(ListNode *head) {
   return false;
 }
 
+vector<int> leetcode_167(vector<int> &numbers, int target) {
+  int i = 0, j = numbers.size() - 1;
+  vector<int> result;
+  while (i < j) {
+    int sum = numbers[i] + numbers[j];
+    if (sum > target) {
+      j--;
+    }
+    if (sum < target) {
+      i++;
+    }
+    if (sum == target) {
+      result.push_back(i + 1);
+      result.push_back(j + 1);
+      break;
+    }
+  }
+  return result;
+}
+
 int getSum(int n) {
   int sum = 0;
   while (n > 0) {
