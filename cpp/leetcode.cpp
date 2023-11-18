@@ -11,6 +11,17 @@
 
 using namespace std;
 
+struct ListNode {
+    int val;
+    ListNode *next;
+
+    ListNode() : val(0), next(nullptr) {}
+
+    ListNode(int x) : val(x), next(nullptr) {}
+
+    ListNode(int x, ListNode *next) : val(x), next(next) {}
+};
+
 vector<int> leetcode_1(vector<int> &nums, int target) {
   vector<int> result;
   unordered_map<int, int> m;
@@ -327,17 +338,6 @@ bool leetcode_20(string s) {
   return st.empty();
 }
 
-struct ListNode {
-    int val;
-    ListNode *next;
-
-    ListNode() : val(0), next(nullptr) {}
-
-    ListNode(int x) : val(x), next(nullptr) {}
-
-    ListNode(int x, ListNode *next) : val(x), next(next) {}
-};
-
 ListNode *leetcode_21(ListNode *list1, ListNode *list2) {
   ListNode *head = new ListNode(), *tmp = head;
   while (list1 != NULL and list2 != NULL) {
@@ -370,6 +370,27 @@ int leetcode_28(string haystack, string needle) {
     return -1;
   }
   return index;
+}
+
+bool leetcode_36(vector<vector<char>> &board) {
+  int row[9][9] = {}, col[9][9] = {};
+  int boxes[3][3][9] = {};
+  for (int i = 0; i < 9; ++i) {
+    for (int j = 0; j < 9; ++j) {
+      char c = board[i][j];
+      if (c == '.') {
+        continue;
+      }
+      int index = c - '0' - 1;
+      row[i][index]++;
+      col[index][j]++;
+      boxes[i / 3][j / 3][index]++;
+      if (row[i][index] > 1 || col[index][j] > 1 || boxes[i / 3][j / 3][index] > 1) {
+        return false;
+      }
+    }
+  }
+  return true;
 }
 
 int leetcode_58(string s) {
