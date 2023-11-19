@@ -394,13 +394,10 @@ bool leetcode_36(vector<vector<char>> &board) {
 }
 
 vector<vector<string>> leetcode_49(vector<string> &strs) {
-  map<vector<char>, vector<string>> m;
+  map<string, vector<string>> m;
   for (const string &s: strs) {
-    vector<char> t(s.begin(), s.end());
+    string t = s;
     sort(t.begin(), t.end());
-    if (m.find(t) == m.end()) {
-      m[t] = vector<string>();
-    }
     m[t].push_back(s);
   }
   vector<vector<string>> result;
