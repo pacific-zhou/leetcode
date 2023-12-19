@@ -64,6 +64,20 @@ def leetcode121(self, prices: List[int]) -> int:
     return maxProfit
 
 
+def leetcode128(self, nums: List[int]) -> int:
+    result = 0
+    num_set = set(nums)
+    for e in num_set:
+        if e - 1 not in num_set:
+            cur = e
+            curLength = 1
+            while cur + 1 in num_set:
+                cur += 1
+                curLength += 1
+            result = max(result, curLength)
+    return result
+
+
 def leetcode169(self, nums: List[int]) -> int:
     count, result = 0, 0
     for v in nums:
