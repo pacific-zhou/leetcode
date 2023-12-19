@@ -7,6 +7,7 @@
 #include <set>
 #include <stack>
 #include <unordered_map>
+#include <unordered_set>
 #include <vector>
 
 using namespace std;
@@ -405,6 +406,11 @@ vector<vector<string>> leetcode_49(vector<string> &strs) {
     result.push_back(i.second);
   }
   return result;
+}
+
+vector<vector<int>> leetcode_56(vector<vector<int>> &intervals) {
+  int min = INT_MAX, max = 0;
+
 }
 
 int leetcode_58(string s) {
@@ -859,6 +865,26 @@ bool leetcode_125_2(string s) {
   }
   string reverse_str(new_str.rbegin(), new_str.rend());
   return reverse_str == new_str;
+}
+
+int leetcode_128(vector<int> &nums) {
+  unordered_set<int> num_set;
+  for (const auto i: nums) {
+    num_set.insert(i);
+  }
+  int result = 0;
+  for (const auto &i: num_set) {
+    if (!num_set.count(i - 1)) {
+      int cur = i;
+      int curLength = 1;
+      while (num_set.count(cur + 1)) {
+        curLength++;
+        cur++;
+      }
+      result = max(curLength, result);
+    }
+  }
+  return result;
 }
 
 // "  h  ello world tiffzhou  "
