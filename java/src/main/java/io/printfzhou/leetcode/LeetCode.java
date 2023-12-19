@@ -1,7 +1,8 @@
 package io.printfzhou.leetcode;
 
 import java.util.Arrays;
-import java.util.stream.IntStream;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author prinfzhou
@@ -27,6 +28,26 @@ public class LeetCode {
             System.arraycopy(nums2, 0, nums1, m, n);
         }
         Arrays.sort(nums1);
+    }
+
+    public int leetcode_128(int[] nums) {
+        Set<Integer> numSet = new HashSet<>();
+        for (int num : nums) {
+            numSet.add(num);
+        }
+        int result = 0;
+        for (int num : numSet) {
+            if (!numSet.contains(num - 1)) {
+                int cur = num;
+                int curLength = 1;
+                while (numSet.contains(cur + 1)) {
+                    cur++;
+                    curLength++;
+                }
+                result = Math.max(result, curLength);
+            }
+        }
+        return result;
     }
 
     public static void main(String[] args) {
