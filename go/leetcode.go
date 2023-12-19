@@ -76,6 +76,28 @@ func leetcode121(prices []int) int {
 	return maxProfit
 }
 
+func leetcode128(nums []int) int {
+	numSet := map[int]bool{}
+	for _, num := range nums {
+		numSet[num] = true
+	}
+	result := 0
+	for i := range numSet {
+		if !numSet[i-1] {
+			cur := i
+			curLength := 1
+			for numSet[cur+1] {
+				cur++
+				curLength++
+			}
+			if curLength > result {
+				result = curLength
+			}
+		}
+	}
+	return result
+}
+
 func leetcode169(nums []int) int {
 	count, result := 0, 0
 	for _, v := range nums {
