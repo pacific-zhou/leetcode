@@ -98,6 +98,43 @@ func leetcode128(nums []int) int {
 	return result
 }
 
+type leetcode155 struct {
+	stack    []int
+	minStack []int
+}
+
+func Constructor() leetcode155 {
+	return leetcode155{
+		stack:    []int{},
+		minStack: []int{math.MaxInt64},
+	}
+}
+
+func (this *leetcode155) Push(val int) {
+	this.stack = append(this.stack, val)
+	this.minStack = append(this.minStack, min(val, this.minStack[len(this.minStack)-1]))
+}
+
+func (this *leetcode155) Pop() {
+	this.stack = this.stack[:len(this.stack)-1]
+	this.minStack = this.minStack[:len(this.minStack)-1]
+}
+
+func (this *leetcode155) Top() int {
+	return this.stack[len(this.stack)-1]
+}
+
+func (this *leetcode155) GetMin() int {
+	return this.minStack[len(this.minStack)-1]
+}
+
+func min(x, y int) int {
+	if x < y {
+		return x
+	}
+	return y
+}
+
 func leetcode169(nums []int) int {
 	count, result := 0, 0
 	for _, v := range nums {
