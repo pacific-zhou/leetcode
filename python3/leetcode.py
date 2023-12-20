@@ -1,3 +1,4 @@
+import math
 from typing import List
 
 
@@ -76,6 +77,27 @@ def leetcode128(self, nums: List[int]) -> int:
                 curLength += 1
             result = max(result, curLength)
     return result
+
+
+class leetcode155:
+
+    def __init__(self):
+        self.x_stack = []
+        self.min_stack = [math.inf]
+
+    def push(self, val: int) -> None:
+        self.x_stack.append(val)
+        self.min_stack.append(min(val, self.min_stack[-1]))
+
+    def pop(self) -> None:
+        self.x_stack.pop()
+        self.min_stack.pop()
+
+    def top(self) -> int:
+        return self.x_stack[-1]
+
+    def getMin(self) -> int:
+        return self.min_stack[-1]
 
 
 def leetcode169(self, nums: List[int]) -> int:
