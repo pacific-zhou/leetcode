@@ -38,6 +38,33 @@ vector<int> leetcode_1(vector<int> &nums, int target) {
   return result;
 }
 
+ListNode *leetcode_2(ListNode *l1, ListNode *l2) {
+  ListNode *head = nullptr, *tail = nullptr;
+  int carry = 0;
+  while (l1 || l2) {
+    int l1_val = l1 == nullptr ? 0 : l1->val;
+    int l2_val = l2 == nullptr ? 0 : l2->val;
+    int sum = l1_val + l2_val + carry;
+    if (head == nullptr) {
+      head = tail = new ListNode(sum % 10);
+    } else {
+      tail->next = new ListNode(sum % 10);
+      tail = tail->next;
+    }
+    carry = sum / 10;
+    if (l1) {
+      l1 = l1->next;
+    }
+    if (l2) {
+      l2 = l2->next;
+    }
+  }
+  if (carry > 0) {
+    tail->next = new ListNode(carry);
+  }
+  return head;
+}
+
 int leetcode_3(string s) {
   int fast = 0, slow = 0, max_count = 0;
   map<char, int> m;
