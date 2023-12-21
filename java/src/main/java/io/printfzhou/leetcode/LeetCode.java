@@ -1,14 +1,55 @@
 package io.printfzhou.leetcode;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * @author prinfzhou
  */
 public class LeetCode {
+
+    public static class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode() {
+        }
+
+        ListNode(int val) {
+            this.val = val;
+        }
+
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
+    }
+
+    public ListNode leetcode_2(ListNode l1, ListNode l2) {
+        int carry = 0;
+        ListNode head = null, tail = null;
+        while (Objects.nonNull(l1) || Objects.nonNull(l2)) {
+            int l1Val = Objects.nonNull(l1) ? l1.val : 0;
+            int l2Val = Objects.nonNull(l2) ? l2.val : 0;
+            int sum = l1Val + l2Val + carry;
+            if (Objects.isNull(head)) {
+                head = tail = new ListNode(sum % 10);
+            } else {
+                tail.next = new ListNode(sum % 10);
+                tail = tail.next;
+            }
+            carry = sum / 10;
+            if (Objects.nonNull(l1)) {
+                l1 = l1.next;
+            }
+            if (Objects.nonNull(l2)) {
+                l2 = l2.next;
+            }
+        }
+        if (carry > 0) {
+            tail.next = new ListNode(carry);
+        }
+        return head;
+    }
 
     public void leetcode_88_1(int[] nums1, int m, int[] nums2, int n) {
         int i = m + n;
