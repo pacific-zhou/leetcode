@@ -1,5 +1,37 @@
 import math
-from typing import List
+from typing import List, Optional
+
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+
+def addTwoNumbers(l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+    head = None
+    tail = None
+    carry = 0
+    while l1 is not None or l2 is not None:
+        n1 = n2 = 0
+        if l1 is not None:
+            n1 = l1.val
+        if l2 is not None:
+            n2 = l2.val
+        sum_val = n1 + n2 + carry
+        carry = int(sum_val / 10)
+        if head is None:
+            head = tail = ListNode(val=sum_val % 10)
+        else:
+            tail.next = ListNode(val=sum_val % 10)
+            tail = tail.next
+        if l1 is not None:
+            l1 = l1.next
+        if l2 is not None:
+            l2 = l2.next
+    if carry > 0:
+        tail.next = ListNode(val=carry)
+    return head
 
 
 def leetcode26(self, nums: List[int]) -> int:
