@@ -478,6 +478,44 @@ string leetcode_67(string a, string b) {
   return result;
 }
 
+string leetcode_71(string path) {
+  auto split = [](const string &s, char delim) -> vector<string> {
+      vector<string> result;
+      string cur;
+      for (char ch: s) {
+        if (ch == delim) {
+          result.push_back(cur);
+          cur.clear();
+        } else {
+          cur += ch;
+        }
+      }
+      result.push_back(cur);
+      return result;
+  };
+
+  vector<string> names = split(path, '/');
+  vector<string> stack;
+  for (string &name: names) {
+    if (name == "..") {
+      if (!stack.empty()) {
+        stack.pop_back();
+      }
+    } else if (!name.empty() && name != ".") {
+      stack.push_back(name);
+    }
+  }
+  string result;
+  if (stack.empty()) {
+    result = "/";
+  } else {
+    for (string &name: stack) {
+      result += "/" + name;
+    }
+  }
+  return result;
+}
+
 void leetcode_88_1(vector<int> &nums1, int m, vector<int> &nums2, int n) {
   int i = m + n;
   while (m > 0 and n > 0) {
