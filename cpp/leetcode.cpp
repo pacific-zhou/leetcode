@@ -1025,6 +1025,50 @@ string leetcode_151(string s) {
   return result;
 }
 
+class leetcode_208 {
+public:
+    leetcode_208() : children(26), isEnd(false){
+
+    }
+
+    void insert(string word) {
+      leetcode_208 *node = this;
+      for (char c: word) {
+        c -= 'a';
+        if (node->children[c] == nullptr) {
+          node->children[c] = new leetcode_208();
+        }
+        node = node->children[c];
+      }
+      node->isEnd = true;
+    }
+
+    bool search(string word) {
+      leetcode_208 *node = this->searchPrefix(word);
+      return node != nullptr && node->isEnd;
+    }
+
+    bool startsWith(string prefix) {
+      return searchPrefix(prefix) != nullptr;
+    }
+private:
+    leetcode_208 *searchPrefix(string prefix) {
+      leetcode_208 * node = this;
+      for (char c: prefix) {
+        c -= 'a';
+        if (node->children[c] == nullptr) {
+          return nullptr;
+        }
+        node = node->children[c];
+      }
+      return node;
+    }
+
+private:
+    vector<leetcode_208*> children;
+    bool isEnd;
+};
+
 int leetcode_224(string s) {
   stack<int> ops;
   ops.push(1);
