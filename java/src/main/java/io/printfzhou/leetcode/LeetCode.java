@@ -51,6 +51,26 @@ public class LeetCode {
         return head;
     }
 
+    public int[][] leetcode_56(int[][] intervals) {
+        if (intervals.length == 0) {
+            return new int[0][2];
+        }
+
+        Arrays.sort(intervals, Comparator.comparingInt(o -> o[0]));
+
+        List<int[]> result = new ArrayList<>();
+        for (int i = 0; i < intervals.length; i++) {
+            int l = intervals[i][0];
+            int r = intervals[i][1];
+            if (result.isEmpty() || result.get(result.size() - 1)[1] < l) {
+                result.add(new int[]{l, r});
+            } else {
+                result.get(result.size() - 1)[1] = Math.max(r, result.get(result.size() - 1)[1]);
+            }
+        }
+        return result.toArray(new int[result.size()][]);
+    }
+
     public void leetcode_88_1(int[] nums1, int m, int[] nums2, int n) {
         int i = m + n;
         while (m > 0 && n > 0) {
