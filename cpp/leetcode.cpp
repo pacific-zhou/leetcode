@@ -436,8 +436,21 @@ vector<vector<string>> leetcode_49(vector<string> &strs) {
 }
 
 vector<vector<int>> leetcode_56(vector<vector<int>> &intervals) {
-  int min = INT_MAX, max = 0;
-
+  if (intervals.empty()) {
+    return {};
+  }
+  sort(intervals.begin(), intervals.end());
+  vector<vector<int>> result;
+  for (int i = 0; i < intervals.size(); ++i) {
+    int l = intervals[i][0];
+    int r = intervals[i][1];
+    if (result.empty() || result.back()[1] < l) {
+      result.push_back({l, r});
+    } else {
+      result.back()[1] = max(result.back()[1], r);
+    }
+  }
+  return result;
 }
 
 int leetcode_58(string s) {
