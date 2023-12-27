@@ -550,6 +550,46 @@ void leetcode_88_2(vector<int> &nums1, int m, vector<int> &nums2, int n) {
   std::sort(nums1.begin(), nums1.end());
 }
 
+void reverseLinkedList(ListNode *head) {
+  ListNode *pre = nullptr;
+  ListNode *cur = head;
+
+  while (cur != nullptr) {
+    ListNode *next = cur->next;
+    cur->next = pre;
+    pre = cur;
+    cur = next;
+  }
+}
+
+ListNode *leetcode_92(ListNode *head, int left, int right) {
+  ListNode *dummyNode = new ListNode(-1);
+  dummyNode->next = head;
+
+  ListNode *pre = dummyNode;
+
+  for (int i = 0; i < left - 1; ++i) {
+    pre = pre->next;
+  }
+
+  ListNode *rightNode = pre;
+  for (int i = 0; i < right - left + 1; ++i) {
+    rightNode = rightNode->next;
+  }
+  ListNode *leftNode = pre->next;
+  ListNode *curr = rightNode->next;
+
+  pre->next = nullptr;
+  rightNode->next = nullptr;
+
+  reverseLinkedList(leftNode);
+
+  pre->next = rightNode;
+  leftNode->next = curr;
+
+  return dummyNode->next;
+}
+
 struct TreeNode {
     int val;
     TreeNode *left;
@@ -1040,7 +1080,7 @@ string leetcode_151(string s) {
 
 class leetcode_208 {
 public:
-    leetcode_208() : children(26), isEnd(false){
+    leetcode_208() : children(26), isEnd(false) {
 
     }
 
@@ -1064,9 +1104,10 @@ public:
     bool startsWith(string prefix) {
       return searchPrefix(prefix) != nullptr;
     }
+
 private:
     leetcode_208 *searchPrefix(string prefix) {
-      leetcode_208 * node = this;
+      leetcode_208 *node = this;
       for (char c: prefix) {
         c -= 'a';
         if (node->children[c] == nullptr) {
@@ -1078,7 +1119,7 @@ private:
     }
 
 private:
-    vector<leetcode_208*> children;
+    vector<leetcode_208 *> children;
     bool isEnd;
 };
 
