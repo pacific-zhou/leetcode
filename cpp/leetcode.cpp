@@ -603,6 +603,20 @@ struct TreeNode {
             : val(x), left(left), right(right) {}
 };
 
+bool check_bst(TreeNode *node, long long lower, long long upper) {
+  if (node == nullptr) {
+    return true;
+  }
+  if (node->val <= lower || node->val >= upper) {
+    return false;
+  }
+  return check_bst(node->left, lower, node->val) && check_bst(node->right, node->val, upper);
+}
+
+bool leetcode_98(TreeNode *root) {
+  return check_bst(root, LONG_MIN, LONG_MAX);
+}
+
 bool leetcode_100(TreeNode *p, TreeNode *q) {
   if (p == nullptr and q == nullptr) {
     return true;
