@@ -659,6 +659,33 @@ int leetcode_104(TreeNode *root) {
   return max(leetcode_104(root->left), leetcode_104(root->right)) + 1;
 }
 
+TreeNode* build_tree(const vector<int>& preorder, const vector<int>& inorder, int preorder_left, int preorder_right, int inorder_left, int inorder_right, unordered_map<int, int> index) {
+  if (preorder_left > preorder_right) {
+    return nullptr;
+  }
+  int preorder_root = preorder_left;
+  int inorder_root = index[preorder[preorder_root]];
+
+  TreeNode *root = new TreeNode(preorder[preorder_root]);
+  int size_left_subtree = inorder_root - inorder_left;
+
+  root->left = build_tree(preorder, inorder, preorder_left + 1, preorder_left + size_left_subtree, inorder_left,
+                          inorder_root - 1, index);
+
+  root->right = build_tree(preorder, inorder, preorder_left + size_left_subtree + 1, preorder_right, inorder_root + 1,
+                           inorder_right, index);
+  return root;
+}
+
+TreeNode* leetcode_105(vector<int> &preorder, vector<int> &inorder) {
+  int n = preorder.size();
+  unordered_map<int, int> index;
+  for (int i = 0; i < n; i++) {
+    index[inorder[i]] = i;
+  }
+  return build_tree(preorder, inorder, 0, n - 1, 0, n - 1, index);
+}
+
 TreeNode *helper(vector<int> &nums, int left, int right) {
   if (left > right) {
     return nullptr;
