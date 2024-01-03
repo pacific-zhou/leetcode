@@ -348,6 +348,26 @@ vector<vector<int>> leetcode_15(vector<int> &nums) {
   return result;
 }
 
+ListNode *leetcode_19(ListNode *head, int n) {
+  int length = 0;
+  ListNode *tmp = head;
+  while (tmp) {
+    length++;
+    tmp = tmp->next;
+  }
+  int target = length - n;
+  auto *dummy = new ListNode(0, head);
+  tmp = dummy;
+  while (target > 0) {
+    tmp = tmp->next;
+    target--;
+  }
+  tmp->next = tmp->next->next;
+  ListNode *result = dummy->next;
+  delete dummy;
+  return result;
+}
+
 bool leetcode_20(string s) {
   stack<char> st;
   map<char, char> m = {{')', '('},
@@ -659,7 +679,8 @@ int leetcode_104(TreeNode *root) {
   return max(leetcode_104(root->left), leetcode_104(root->right)) + 1;
 }
 
-TreeNode* build_tree(const vector<int>& preorder, const vector<int>& inorder, int preorder_left, int preorder_right, int inorder_left, int inorder_right, unordered_map<int, int> index) {
+TreeNode *build_tree(const vector<int> &preorder, const vector<int> &inorder, int preorder_left, int preorder_right,
+                     int inorder_left, int inorder_right, unordered_map<int, int> index) {
   if (preorder_left > preorder_right) {
     return nullptr;
   }
@@ -677,7 +698,7 @@ TreeNode* build_tree(const vector<int>& preorder, const vector<int>& inorder, in
   return root;
 }
 
-TreeNode* leetcode_105(vector<int> &preorder, vector<int> &inorder) {
+TreeNode *leetcode_105(vector<int> &preorder, vector<int> &inorder) {
   int n = preorder.size();
   unordered_map<int, int> index;
   for (int i = 0; i < n; i++) {
