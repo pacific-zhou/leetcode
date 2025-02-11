@@ -1296,6 +1296,30 @@ vector<double> leetcode_637(TreeNode *root) {
   return result;
 }
 
+#ifdef leetcode_77
+class Solution {
+public:
+    void backtrack(vector<vector<int>>& ans, vector<int>& cur, int k, int n,
+                   int start) {
+        if (cur.size() == k) {
+            ans.push_back(cur);
+            return;
+        }
+        for (int i = start; i <= n; i++) {
+            cur.push_back(i);
+            backtrack(ans, cur, k, n, i + 1);
+            cur.pop_back();
+        }
+    }
+    vector<vector<int>> combine(int n, int k) {
+        vector<vector<int>> ans;
+        vector<int> cur;
+        backtrack(ans, cur, k, n, 1);
+        return ans;
+    }
+};
+#endif
+
 // main entry point
 int main() {
   cout << "Hello, World!" << endl;
