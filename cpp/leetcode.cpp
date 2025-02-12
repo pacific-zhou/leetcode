@@ -1320,6 +1320,29 @@ public:
 };
 #endif
 
+#ifdef leetcode_21 
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        ListNode* dummy = new ListNode(0);
+        ListNode* cur = dummy;
+        while (list1 or list2) {
+            int v1 = list1 ? list1->val : INT_MAX;
+            int v2 = list2 ? list2->val : INT_MAX;
+            if (v1 < v2) {
+                cur->next = list1;
+                list1 = list1->next;
+            } else {
+                cur->next = list2;
+                list2 = list2->next;
+            }
+            cur = cur->next;
+        }
+        return dummy->next;
+    }
+};
+#endif
+
 // main entry point
 int main() {
   cout << "Hello, World!" << endl;
